@@ -21,8 +21,18 @@ Page({
     that.getSearchResults(that.data.keyword)
   },
 
-  gotoContent:function(){
-
+  gotoContent:function(event){
+    let that = this
+    console.log(event)
+    let recipe = event.currentTarget.dataset.recipe
+    
+    wx.navigateTo({
+      url: '/pages/content/content',
+      success: function(res) {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromRecipePage', { data: recipe })
+      }
+    })
   },
 
   /**
