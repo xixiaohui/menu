@@ -1,17 +1,97 @@
-// pages/myindex/myindex.js
+
+
+const keyDatabaseName='keys'
+const allrecipes = {}
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    words:["常见菜式", "主食小吃", "甜品", "适宜人群", "食疗食补", 
+    "场景", "饮食方式", "中式菜系", "外国美食", "烘焙", "传统美食",
+    "节日食俗", "按制作难度", "按所需时间", "按菜品口味", "按主要工艺"],
+    keys:[],
 
+  },
+
+  filterAllKeysByWords:function(all){
+    let that = this
+
+    let words = that.data.words
+    let allkeys = all
+    for (let index = 0; index < words.length; index++) {
+      const element = words[index];
+
+      var ab = "keys["+index+"]"
+      var data = allkeys.filter(item => item.recipe == element)
+      
+      that.setData({
+        [ab]:data
+      })
+    }
+  },
+
+  getAllKeys:function(){
+    let that = this
+    wx.cloud.callFunction({
+     name:"getAllRecipes",
+     success:res=>{
+        console.log(res.result.data)
+        var allkeys = res.result.data
+        this.filterAllKeysByWords(allkeys)
+     }
+    })
+  },
+
+  getAllKeysByWords:function(){
+    let that = this
+    let words = that.data.words
+
+    for (let index = 0; index < words.length; index++) {
+      const element = words[index];
+      
+      that.getKeysByWords(element,index)
+    }
+  },
+
+  getKeysByWords:function(word,index){
+    let that = this
+    wx.cloud.callFunction({
+      name:"getRecipesByWord",
+      data:{
+        value:word
+      },
+      success:res=>{
+        console.log(res.result.data)
+
+        var ab = "keys["+index+"]"
+        that.setData({
+          [ab]:res.result.data
+        })
+      }
+    })
+  },
+
+  gotoRecipe:function(event){
+    let that = this
+    console.log(event)
+    let text = event.currentTarget.dataset.text
+    
+    console.log(text)
+    wx.navigateTo({
+      url: '/pages/recipe/recipe?text=' + text,
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    // this.getAllKeysByWords()
+    this.getAllKeys()
 
   },
 

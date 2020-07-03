@@ -1,0 +1,43 @@
+<scroll-view scroll-y enable-back-to-top style="height:{{height}}px"> 
+
+  <view class="recipe">
+  
+    <view class="title">
+      {{ recipe.title}}
+    </view>
+    <view class="subcontent">
+      {{ recipe.subcontent}}
+    </view>
+
+    <view class="subtitle">
+      <text>操作步骤：</text>
+    </view>
+    <block wx:for="{{recipe.steps }}" wx:key="item">
+      <view class="steps">
+        <text>{{ index+1 }}.{{ item }}</text>
+      </view>
+    </block>
+
+    <view class="subtitle">
+      <text>提示：</text>
+    </view>
+    <block wx:for="{{ recipe.tips }}" wx:key="item" >
+      <view class="tips">
+        <text>{{ index+1 }}.{{ item }}</text>
+      </view>
+    </block>
+
+    <view class="subtitle">
+      <text>所属分类：</text>
+    </view>
+
+    <view class="tags">
+      <block wx:for="{{ recipe.tags }}" wx:key="item" >
+          <button hover-class="tag_hover" class ="tagButton" size="mini" bindtap="gotoRecipe" data-text="{{ item }}"> 
+            <text class="but_content">{{ item }}</text> 
+          </button>
+      </block>
+    </view>
+  </view>
+
+</scroll-view>

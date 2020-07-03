@@ -1,2 +1,24 @@
-<!--pages/myindex/myindex.wxml-->
-<text>妈妈的菜单</text>
+
+<view>
+  <view class="mysearch">
+    <mp-searchbar ext-class="search" bindblur="selectResult" search="{{search}}"></mp-searchbar>
+  </view>
+  
+  <scroll-view class="myscroll" scroll-y enable-back-to-top bindscroll="allscreenscroll"> 
+
+    <block wx:for="{{ keys }}" wx:key="item" wx:for-index="idx">
+    
+      <view class="words">
+        <text >{{ words[idx]}}</text>
+      </view>
+      
+      <block wx:for="{{ item }}" wx:for-item="itemName" wx:key="itemName" wx:for-index="idx">
+        <button  hover-class="tag_hover" size="mini" class="tag" bindtap="gotoRecipe" data-text="{{ itemName.type }}" >
+            <text class="but_content">{{ itemName.type }}</text>
+          </button>
+      </block>
+
+    </block>
+  </scroll-view>
+</view>
+

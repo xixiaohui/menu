@@ -1,0 +1,5 @@
+@import "../../style/style.wxss";
+
+.but_content{
+  background-color: #F6F6F6;
+}
