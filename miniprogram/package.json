@@ -1,0 +1,7 @@
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {
+    "weui-miniprogram": "^1.0.3"
+  }
+}

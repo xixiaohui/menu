@@ -6,33 +6,29 @@ cloud.init({
 })
 
 const db = cloud.database()
-const MAX_LIMIT = 100
-exports.main = async (event, context) => {
+const _ = db.command
 
-  //value
-  const value = event.value
-  // 先取出集合记录总数
-  const countResult = await db.collection('keys').count()
-  const total = countResult.total
-  // 计算需分几次取
-  const batchTimes = Math.ceil(total / 100)
-  // 承载所有读操作的 promise 的数组
-  const tasks = []
-  for (let i = 0; i < batchTimes; i++) {
-    const promise = db.collection('keys')
-    .where({
-      recipe:value
-    })
-    .field({
-      _id:false
-    }).skip(i * MAX_LIMIT).limit(MAX_LIMIT).get()
-    tasks.push(promise)
-  }
-  // 等待所有
-  return (await Promise.all(tasks)).reduce((acc, cur) => {
-    return {
-      data: acc.data.concat(cur.data),
-      errMsg: acc.errMsg,
-    }
-  })
+const SKIP_NUM = 20
+
+// 云函数入口函数
+exports.main = async (event, context) => {
+  // const wxContext = cloud.getWXContext()
+
+  const databasename = event.databasename
+  const keyword = event.keyword
+  const page = event.page
+
+  var arr = []
+  arr.push(keyword)
+  return await db.collection(databasename).where(
+    _.or([
+      {
+        title:keyword
+      },
+      {
+        tags:_.in(arr)
+      }
+    ])).field({
+    _id:false
+  }).skip(page * SKIP_NUM).limit(SKIP_NUM).get()
 }

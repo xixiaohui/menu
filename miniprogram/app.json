@@ -2,7 +2,8 @@
   "pages": [
     "pages/myindex/myindex",
     "pages/recipe/recipe",
-    "pages/content/content"
+    "pages/content/content",
+    "pages/search/search"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

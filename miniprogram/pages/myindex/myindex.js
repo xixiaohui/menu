@@ -16,6 +16,17 @@ Page({
 
   },
 
+  //处理搜索结果
+  selectResult: function (result){
+    console.log("---------selectResult---------" + JSON.stringify(result))
+
+    //跳转到新的页面
+    let text = result.detail.value
+    wx.navigateTo({
+      url: '/pages/search/search?text=' + text,
+    })
+  },
+
   filterAllKeysByWords:function(all){
     let that = this
 
@@ -35,44 +46,48 @@ Page({
 
   getAllKeys:function(){
     let that = this
+    wx.showLoading({
+      title: '加载中，请稍后',
+    })
     wx.cloud.callFunction({
      name:"getAllRecipes",
      success:res=>{
+        wx.hideLoading()
         console.log(res.result.data)
         var allkeys = res.result.data
-        this.filterAllKeysByWords(allkeys)
+        that.filterAllKeysByWords(allkeys)
      }
     })
   },
 
-  getAllKeysByWords:function(){
-    let that = this
-    let words = that.data.words
+  // getAllKeysByWords:function(){
+  //   let that = this
+  //   let words = that.data.words
 
-    for (let index = 0; index < words.length; index++) {
-      const element = words[index];
+  //   for (let index = 0; index < words.length; index++) {
+  //     const element = words[index];
       
-      that.getKeysByWords(element,index)
-    }
-  },
+  //     that.getKeysByWords(element,index)
+  //   }
+  // },
 
-  getKeysByWords:function(word,index){
-    let that = this
-    wx.cloud.callFunction({
-      name:"getRecipesByWord",
-      data:{
-        value:word
-      },
-      success:res=>{
-        console.log(res.result.data)
+  // getKeysByWords:function(word,index){
+  //   let that = this
+  //   wx.cloud.callFunction({
+  //     name:"getRecipesByWord",
+  //     data:{
+  //       value:word
+  //     },
+  //     success:res=>{
+  //       console.log(res.result.data)
 
-        var ab = "keys["+index+"]"
-        that.setData({
-          [ab]:res.result.data
-        })
-      }
-    })
-  },
+  //       var ab = "keys["+index+"]"
+  //       that.setData({
+  //         [ab]:res.result.data
+  //       })
+  //     }
+  //   })
+  // },
 
   gotoRecipe:function(event){
     let that = this
@@ -90,7 +105,6 @@ Page({
    */
   onLoad: function (options) {
 
-    // this.getAllKeysByWords()
     this.getAllKeys()
 
   },

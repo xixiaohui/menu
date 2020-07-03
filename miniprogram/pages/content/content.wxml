@@ -1,4 +1,4 @@
-<scroll-view scroll-y enable-back-to-top style="height:{{height}}px"> 
+<scroll-view scroll-y enable-back-to-top > 
 
   <view class="recipe">
   
