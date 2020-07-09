@@ -12,9 +12,6 @@ Page({
     page:0
   },
 
-
- 
-
   scrolltolower:function(){
 
     let that = this
@@ -46,7 +43,6 @@ Page({
     })
 
     console.log(value)
-
     that.getSearchResults(value)
   },
 

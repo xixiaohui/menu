@@ -93,5 +93,14 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onShareTimeline:function(){
+    let that = this
+    var title = that.data.recipe.title
+    return {
+      title:"#妈妈的菜单#" +title 
+    }
   }
+
 })

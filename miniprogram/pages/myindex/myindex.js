@@ -60,34 +60,6 @@ Page({
     })
   },
 
-  // getAllKeysByWords:function(){
-  //   let that = this
-  //   let words = that.data.words
-
-  //   for (let index = 0; index < words.length; index++) {
-  //     const element = words[index];
-      
-  //     that.getKeysByWords(element,index)
-  //   }
-  // },
-
-  // getKeysByWords:function(word,index){
-  //   let that = this
-  //   wx.cloud.callFunction({
-  //     name:"getRecipesByWord",
-  //     data:{
-  //       value:word
-  //     },
-  //     success:res=>{
-  //       console.log(res.result.data)
-
-  //       var ab = "keys["+index+"]"
-  //       that.setData({
-  //         [ab]:res.result.data
-  //       })
-  //     }
-  //   })
-  // },
 
   gotoRecipe:function(event){
     let that = this
@@ -156,5 +128,14 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onShareTimeline:function(){
+    
+    
+    return {
+      title:"#妈妈的菜单#" + "逛吃逛吃" 
+    }
+  
   }
 })

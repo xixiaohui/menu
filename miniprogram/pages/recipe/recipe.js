@@ -148,5 +148,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onShareTimeline:function(){
+    let that = this
+    var category = that.data.category
+    return {
+      title:"#妈妈的菜单#" +category 
+    }
   }
 })
