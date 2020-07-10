@@ -17,9 +17,33 @@ Page({
     skipnum : 0,
 
     //当前分类
-    category:""
+    category:"",
+    
+    //记录此分类的总数
+    count: "?"
   },
 
+  getCountAboutThisClass:function(){
+    let that = this
+    let category = that.data.category
+    
+    wx.cloud.callFunction({
+      name:'getCount',
+      data:{
+        databasename:'recipes',
+        keyword:category
+        
+      }
+    }).then(res =>{
+      console.log("---getCountAboutThisClass---")
+      var total = res.result.total
+      that.setData({
+        count:total
+      })
+
+    })
+    
+  },
 
   //跳转到Content页面
   gotoContent:function(event){
@@ -91,14 +115,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this
     console.log(options.text)
-    this.setData({
+    that.setData({
       category : options.text
     })
 
-    this.getRecipe(0)
-
+    that.getRecipe(0)
+    that.getCountAboutThisClass()
   },
 
   /**

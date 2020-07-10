@@ -2,6 +2,9 @@
 
 <scroll-view scroll-y enable-back-to-top style="height:{{height}}px" bindscrolltolower="scrolltolower">  
 
+    <view class="total">
+      <text>共收录 {{ count }} 道菜</text>
+    </view>
     <block wx:for="{{ recipes }}" wx:key="item" wx:for-index="idx">
         <view class="recipe" bindtap="gotoContent" data-recipe="{{ item }}">
           <view class="title">{{ item.title}}\n</view>
