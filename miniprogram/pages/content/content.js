@@ -29,13 +29,70 @@ Page({
     })
   },
   
+  /**
+   * 根据菜名检索
+   * @param {} title 
+   */
+  setRecipeByOneWord:function(title){
+    let that = this
+    wx.showLoading({
+      title: '加载中，请稍后',
+    })
+
+    wx.cloud.callFunction({
+      name:"getRecipesByWord",
+      data:{
+        databasename:'recipes',
+        keyword:title,
+        page:0
+      },
+      success:res=>{
+        wx.hideLoading()
+        console.log(res.result.data)
+        var allrecipe = res.result.data
+        var firstRecipe = allrecipe[0]
+        that.setData({
+          recipe:firstRecipe
+        })
+      },
+      fail:res=>{
+        console.log(res)
+      }
+    })
+
+    // const db = wx.cloud.database()
+    // db.collection('recipes').where({
+    //   title: title
+    // }).get().then(res => {
+    //   wx.hideLoading()
+    //   console.log(res.data)
+    //   var firstRecipe = res.data[0]
+    //   that.setData({
+
+    //     recipe:firstRecipe
+    //   })
+    // })
+
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("start---------------------------------------->")
+    console.log(options)
     let that = this
-    const eventChannel = this.getOpenerEventChannel()
+
+    //从分享进入的这里
+    if(options.text){
+      console.log("从分享进入的这里")
+      var title = options.text
+      that.setRecipeByOneWord(title)
+      console.log("end---------------------------------------->")
+      return
+    }
+  
+    const eventChannel = that.getOpenerEventChannel()
     eventChannel.on('acceptDataFromRecipePage', function(res) {
       console.log(res.data)
 
@@ -99,7 +156,8 @@ Page({
     let that = this
     var title = that.data.recipe.title
     return {
-      title:"#妈妈的菜单#" + title
+      title:"#妈妈的菜单#" + title,
+      query:"text="+title
     }
   }
 
