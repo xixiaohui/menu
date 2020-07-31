@@ -60,19 +60,6 @@ Page({
       }
     })
 
-    // const db = wx.cloud.database()
-    // db.collection('recipes').where({
-    //   title: title
-    // }).get().then(res => {
-    //   wx.hideLoading()
-    //   console.log(res.data)
-    //   var firstRecipe = res.data[0]
-    //   that.setData({
-
-    //     recipe:firstRecipe
-    //   })
-    // })
-
   },
 
   /**
@@ -148,8 +135,15 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    let that = this
+    console.log("onShareAppMessage")
+    var title = that.data.recipe.title
+    var sharepath = '/pages/content/content?text='+title
+    return{
+      title:title,
+      path:sharepath
+    }
   },
 
   onShareTimeline:function(){

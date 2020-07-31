@@ -1,5 +1,7 @@
 
 <view>
+  <ad unit-id="adunit-7b2f84e5e5aed479"></ad>
+  
   <view class="mysearch">
     <mp-searchbar ext-class="search" bindblur="selectResult" search="{{search}}"></mp-searchbar>
   </view>
