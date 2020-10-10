@@ -76,18 +76,18 @@ Page({
     })
     
     // 用户触发广告后，显示激励视频广告
-    if (videoAd) {
-      videoAd.show().catch(() => {
-        // 失败重试
-        videoAd.load()
-          .then(() => videoAd.show())
-          .catch(err => {
-            console.log('激励视频 广告显示失败')
-          })
-      })
-    }else{
+    // if (videoAd) {
+    //   videoAd.show().catch(() => {
+    //     // 失败重试
+    //     videoAd.load()
+    //       .then(() => videoAd.show())
+    //       .catch(err => {
+    //         console.log('激励视频 广告显示失败')
+    //       })
+    //   })
+    // }else{
       that.canGotoContent(event)
-    }
+    // }
   },
 
   /**
@@ -155,36 +155,36 @@ Page({
 
 
     // 在页面onLoad回调事件中创建激励视频广告实例
-    if (wx.createRewardedVideoAd) {
-      videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-241183198697a6ea'
-      })
-      videoAd.onLoad(() => {
-        console.log('激励视频 广告加载成功')
-      })
-      videoAd.onError((err) => {})
-      videoAd.onClose((res) => {
-        if(res && res.isEnded){
-          that.canGotoContent(that.data.event)
-        }else{
-          // 播放中途退出，不下发游戏奖励
-          console.log("播放中途退出，不下发游戏奖励")
+    // if (wx.createRewardedVideoAd) {
+    //   videoAd = wx.createRewardedVideoAd({
+    //     adUnitId: 'adunit-241183198697a6ea'
+    //   })
+    //   videoAd.onLoad(() => {
+    //     console.log('激励视频 广告加载成功')
+    //   })
+    //   videoAd.onError((err) => {})
+    //   videoAd.onClose((res) => {
+    //     if(res && res.isEnded){
+    //       that.canGotoContent(that.data.event)
+    //     }else{
+    //       // 播放中途退出，不下发游戏奖励
+    //       console.log("播放中途退出，不下发游戏奖励")
 
-          wx.showModal({
-            title: '播放中途退出，无法查看内容。',
-            content: '是否继续查看？',
-            success (res) {
-              if (res.confirm) {
-                // console.log('用户点击确定')
-                that.gotoContent(that.data.event)
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
-          })
-        }
-      })
-    }
+    //       wx.showModal({
+    //         title: '播放中途退出，无法查看内容。',
+    //         content: '是否继续查看？',
+    //         success (res) {
+    //           if (res.confirm) {
+    //             // console.log('用户点击确定')
+    //             that.gotoContent(that.data.event)
+    //           } else if (res.cancel) {
+    //             console.log('用户点击取消')
+    //           }
+    //         }
+    //       })
+    //     }
+    //   })
+    // }
   },
 
   /**
