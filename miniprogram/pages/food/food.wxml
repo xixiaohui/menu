@@ -1,0 +1,37 @@
+<block wx:for="{{ foods }}" wx:key="id">
+  <view>
+    <image class="myimage" src="https://oddfee.com/images/food/food{{item.index}}.jpg"></image>
+
+      <view class="othercontent">
+        <view>
+          <text> {{item.title}}</text>
+          
+        </view>
+        <view>
+          <text> {{item.time}}</text>
+          
+        </view>
+        <view>
+          <text> {{item.address}}</text>
+          
+        </view>
+      
+        <block wx:for="{{ item.des }}" wx:key="id">
+          <text>{{ item }}\n</text>
+        </block>
+        <block wx:for="{{ item.tips }}" wx:key="id">
+          <text>{{ item }}\n</text>
+        </block>
+        <block wx:for="{{ item.tags }}" wx:key="id">
+          <text>{{ item }}\n</text>
+        </block>
+      </view>
+    </view> 
+</block>
+
+
+
+
+
+
+

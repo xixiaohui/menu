@@ -14,6 +14,7 @@ Page({
     "节日食俗", "按制作难度", "按所需时间", "按菜品口味", "按主要工艺"],
     keys:[],
 
+    imageIndex: 3,
   },
 
   //处理搜索结果
@@ -53,7 +54,7 @@ Page({
      name:"getAllRecipes",
      success:res=>{
         wx.hideLoading()
-        console.log(res.result.data)
+        // console.log(res.result.data)
         var allkeys = res.result.data
         that.filterAllKeysByWords(allkeys)
      }
@@ -72,6 +73,33 @@ Page({
     })
   },
 
+
+  //跳转到每日推荐页面
+  gotoFoodPage:function(event) {
+    let that = this
+    // console.log(event)
+    let index = event.currentTarget.dataset.index
+    wx.navigateTo({
+      url: '/pages/food/food?index=' + index,
+    })
+
+  },
+
+  //获取每日推荐的菜谱图片索引
+  setImageIndex:function(){
+    let that = this
+    wx.request({
+      url: 'https://www.oddfee.com/menu/',
+      method:'GET',
+      success(res) {
+        // console.log(res)
+        that.setData({
+          imageIndex:res.data[0].index
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -79,6 +107,7 @@ Page({
 
     this.getAllKeys()
 
+    this.setImageIndex()
   },
 
   /**

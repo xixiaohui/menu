@@ -1,0 +1,9 @@
+.myimage{
+  border-radius: 0.3em;
+  width: 100vw;
+  height: 100vw;
+}
+
+.othercontent{
+  padding: 3em;
+}

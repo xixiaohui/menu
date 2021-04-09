@@ -6,6 +6,10 @@
     <mp-searchbar ext-class="search" bindblur="selectResult" search="{{search}}"></mp-searchbar>
   </view>
   
+  <view bindtap="gotoFoodPage" data-index="{{ imageIndex}}">
+    <image class="myimage" src="https://oddfee.com/images/food/food{{ imageIndex}}.jpg"></image>
+  </view>
+
   <scroll-view class="myscroll" scroll-y enable-back-to-top bindscroll="allscreenscroll"> 
 
     <block wx:for="{{ keys }}" wx:key="item" wx:for-index="idx">
