@@ -12,3 +12,23 @@
   margin-bottom: 2rem;
   margin-top: 1rem;
 }
+
+.food_title{
+  font-size: large;
+  font-weight: bold;
+}
+
+.food_time_address{
+  font-size: xx-small;
+  text-align: right;
+}
+
+.food_des{
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.food_tip{
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}

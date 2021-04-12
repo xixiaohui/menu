@@ -12,28 +12,40 @@
       
 
         <view class="othercontent">
-          <view>
+          <view class="food_title">
             <text> {{item.title}}</text>
             
           </view>
-          <view>
+          <view class="food_time_address">
             <text> {{item.time}}</text>
             
           </view>
-          <view>
+          <view class="food_time_address">
             <text> {{item.address}}</text>
             
           </view>
         
           <block wx:for="{{ item.des }}" wx:key="id">
-            <text>{{ item }}\n</text>
+            <view class="food_des">
+              <text>{{ item }}\n</text>
+            </view>
+            
           </block>
+
           <block wx:for="{{ item.tips }}" wx:key="id">
-            <text>{{ item }}\n</text>
+            <view class="food_tip">
+              <text>{{ item }}\n</text>
+            </view>
+            
           </block>
+
           <block wx:for="{{ item.tags }}" wx:key="id">
-            <text>{{ item }}\n</text>
+            <view class="food_time_address"> 
+              <text>{{ item }}\n</text>
+            </view>
+            
           </block>
+
         </view>
       </view>
       
