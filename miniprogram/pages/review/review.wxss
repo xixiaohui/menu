@@ -1,0 +1,41 @@
+
+@import "../../style/style.wxss";
+.myreview_input{
+
+
+  width: 100vw;
+  height: 100vw;
+  padding: 1rem;
+  background-color: white;
+}
+
+.button-sp-area{
+  margin: 2rem auto;
+  width: 60%;
+}
+
+.review_text,
+.review_time,
+.review_address
+{
+  margin: 1rem;
+  font-size: large;
+}
+
+.review_time,
+.review_address
+{
+  font-size: xx-small;
+  text-align: right;
+}
+
+.review_block{
+  margin: 1rem;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.myreview{
+  margin-bottom: 10rem;
+}

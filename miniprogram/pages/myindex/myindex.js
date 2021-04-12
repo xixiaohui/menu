@@ -14,7 +14,7 @@ Page({
     "节日食俗", "按制作难度", "按所需时间", "按菜品口味", "按主要工艺"],
     keys:[],
 
-    imageIndex: 3,
+    imageIndex: -1,
   },
 
   //处理搜索结果
@@ -88,17 +88,24 @@ Page({
   //获取每日推荐的菜谱图片索引
   setImageIndex:function(){
     let that = this
-    wx.request({
-      url: 'https://www.oddfee.com/menu/',
-      method:'GET',
-      success(res) {
-        // console.log(res)
-        that.setData({
-          imageIndex:res.data[0].index
-        })
-      }
+
+    wx.showLoading({
+      title: '加载中，请稍后',
     })
-  },
+    wx.cloud.callFunction({
+     name:"getFood",
+     data:{
+      databasename:'food',
+     }
+    }).then(res=>{
+      wx.hideLoading()
+      console.log(res.result)
+      that.setData({
+        imageIndex:res.result.data[0].index
+      }) 
+    
+  })
+},
 
   /**
    * 生命周期函数--监听页面加载

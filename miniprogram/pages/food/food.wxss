@@ -7,3 +7,8 @@
 .othercontent{
   padding: 3em;
 }
+
+.ads{
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}

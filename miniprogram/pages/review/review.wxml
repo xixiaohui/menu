@@ -1,0 +1,32 @@
+
+<view class="myreview">
+  <view class="section">
+    <form bindsubmit="bindFormSubmit">
+      <textarea class="myreview_input" placeholder="写下您与这道菜的缘分吧~" name="textarea" confirm-type="评论"/>
+      <button class="button-sp-area" type="primary" plain="true" form-type="submit" > 发射评论 </button>
+    </form>
+  </view>
+
+  <view class="words">
+    <text >精彩的评论区</text>
+  </view>
+  <view class="divLine"></view>
+
+  <block wx:for="{{ reviews }}" wx:key="item" wx:for-index="idx">
+    <view class="review_block">
+      <view class="review_text">
+        <text>{{ item.text }}</text>
+      </view>
+      <view class="review_time">
+        <text>{{ item.time }}</text>
+      </view>
+      <view class="review_address">
+        <text>{{ item.address }}</text>
+      </view>
+    </view>
+    
+  </block>
+
+
+
+</view>

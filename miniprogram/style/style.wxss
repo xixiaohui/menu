@@ -46,5 +46,20 @@
   /* height: 50px; */
 }
 
+.divLine{
+  background: white;
+  width: 90%;
+  height: 3rpx;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 
-
+.words{
+  /* background-color: #556B2F; */
+  color: black;
+  margin-left: 1rem;
+  margin-top: 2rem;
+  /* padding: 5px; */
+  font-size: 20px;
+  font-weight: bold;
+}

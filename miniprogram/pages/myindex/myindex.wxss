@@ -1,26 +1,18 @@
 
 @import "../../style/style.wxss";
 
-.words{
-  background-color: #556B2F;
-  color: white;
 
-  margin-bottom: 10px;
-  margin-top: 10px;
-  padding: 5px;
-  font-size: 20px;
-  font-weight: bold;
 
-  border-radius: 5px;
-  margin: 5px;
-
+.catgory{
+  margin: 1rem;
+  margin-bottom: 6rem;
 }
 
 .tag {
   background-color: white;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 18px;
+  /* margin-left: 5px; */
+  margin-right: 1rem; 
+  margin-top: 15px;
   font-size: 17px;
   font-weight: 500;
 

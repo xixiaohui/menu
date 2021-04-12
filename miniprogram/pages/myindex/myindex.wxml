@@ -1,30 +1,32 @@
-
-<view>
-  <ad unit-id="adunit-7b2f84e5e5aed479"></ad>
-  
+<scroll-view class="myscroll" scroll-y enable-back-to-top > 
   <view class="mysearch">
     <mp-searchbar ext-class="search" bindblur="selectResult" search="{{search}}"></mp-searchbar>
   </view>
   
-  <view bindtap="gotoFoodPage" data-index="{{ imageIndex}}">
+  <view wx:if="{{imageIndex !=-1}}" bindtap="gotoFoodPage" data-index="{{ imageIndex}}">
     <image class="myimage" src="https://oddfee.com/images/food/food{{ imageIndex}}.jpg"></image>
   </view>
 
-  <scroll-view class="myscroll" scroll-y enable-back-to-top bindscroll="allscreenscroll"> 
-
+  <view>
     <block wx:for="{{ keys }}" wx:key="item" wx:for-index="idx">
     
+      <ad wx:if="{{ idx == 2 || idx == 8 }}" unit-id="adunit-7b2f84e5e5aed479"></ad>
+      
       <view class="words">
         <text >{{ words[idx]}}</text>
       </view>
       
-      <block wx:for="{{ item }}" wx:for-item="itemName" wx:key="itemName" wx:for-index="idx">
-        <button  hover-class="tag_hover" size="mini" class="tag" bindtap="gotoRecipe" data-text="{{ itemName.type }}" >
-            <text class="but_content">{{ itemName.type }}</text>
-          </button>
-      </block>
+      <view class="divLine"></view>
+      
+      <view class="catgory">
+        <block wx:for="{{ item }}" wx:for-item="itemName" wx:key="itemName" wx:for-index="idx">
+          <button  hover-class="tag_hover" size="mini" class="tag" bindtap="gotoRecipe" data-text="{{ itemName.type }}" >
+              <text class="but_content">{{ itemName.type }}</text>
+            </button>
+        </block>
+      </view>
 
     </block>
-  </scroll-view>
-</view>
-
+  </view>
+  
+</scroll-view>

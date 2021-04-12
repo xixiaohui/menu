@@ -1,33 +1,46 @@
-<block wx:for="{{ foods }}" wx:key="id">
-  <view>
-    <image class="myimage" src="https://oddfee.com/images/food/food{{item.index}}.jpg"></image>
+<view>
+  <block wx:for="{{ foods }}" wx:key="id" wx:for-index="idx">
 
-      <view class="othercontent">
-        <view>
-          <text> {{item.title}}</text>
-          
-        </view>
-        <view>
-          <text> {{item.time}}</text>
-          
-        </view>
-        <view>
-          <text> {{item.address}}</text>
-          
+    <view class= "ads" wx:if="{{ idx == 2}}">
+      <ad unit-id="adunit-7b2f84e5e5aed479"></ad>
+    </view>
+
+    <view>
+        <view bindtap="review" data-id="{{ item._id}}">
+          <image class="myimage" src="https://oddfee.com/images/food/food{{item.index}}.jpg"></image>
         </view>
       
-        <block wx:for="{{ item.des }}" wx:key="id">
-          <text>{{ item }}\n</text>
-        </block>
-        <block wx:for="{{ item.tips }}" wx:key="id">
-          <text>{{ item }}\n</text>
-        </block>
-        <block wx:for="{{ item.tags }}" wx:key="id">
-          <text>{{ item }}\n</text>
-        </block>
+
+        <view class="othercontent">
+          <view>
+            <text> {{item.title}}</text>
+            
+          </view>
+          <view>
+            <text> {{item.time}}</text>
+            
+          </view>
+          <view>
+            <text> {{item.address}}</text>
+            
+          </view>
+        
+          <block wx:for="{{ item.des }}" wx:key="id">
+            <text>{{ item }}\n</text>
+          </block>
+          <block wx:for="{{ item.tips }}" wx:key="id">
+            <text>{{ item }}\n</text>
+          </block>
+          <block wx:for="{{ item.tags }}" wx:key="id">
+            <text>{{ item }}\n</text>
+          </block>
+        </view>
       </view>
-    </view> 
-</block>
+      
+      
+  </block>
+  
+</view>
 
 
 
