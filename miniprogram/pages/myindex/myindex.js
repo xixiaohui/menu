@@ -115,6 +115,14 @@ Page({
     })
   },
 
+  //跳转到我的私房菜
+  gotoMyPrivateStore: function() {
+    let that = this
+   
+    wx.navigateTo({
+      url: '/pages/mystore/mystore',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -178,7 +186,7 @@ Page({
 
 
     return {
-      title: "#妈妈的菜单#" + "逛吃逛吃"
+      title: "#快来七饭#" + "逛吃逛吃"
     }
 
   }

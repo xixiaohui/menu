@@ -1,4 +1,4 @@
-// pages/privatestore/privatestore.js
+// pages/mystore/mystore.js
 Page({
 
   /**
@@ -8,12 +8,28 @@ Page({
     stores: []
   },
 
+  gotoAddfood: function(e){
+    let that = this
+   
+    wx.navigateTo({
+      url: '/pages/addfood/addfood',
+    })
+  },
+  
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let that = this
 
+    that.loadStoreData()
+
+  },
+
+  //加载store里数据
+  loadStoreData:function () {
+    let that = this
     wx.showLoading({
       title: '加载中，请稍后',
     })
@@ -28,21 +44,6 @@ Page({
       that.setData({
         stores: res.result.data
       })
-    })
-
-  },
-
-  //添加评论
-  review: function (event) {
-    console.log("review")
-
-    let that = this
-    // console.log(event)
-    let id = event.currentTarget.dataset.id
-
-    // console.log(text)
-    wx.navigateTo({
-      url: '/pages/review/review?id=' + id,
     })
   },
 
@@ -91,21 +92,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (res) {
-    let that = this
-    console.log("onShareAppMessage")
-    var sharepath = '/pages/privatestore/privatestore'
-    return{
-      title:title,
-      path:sharepath
-    }
-  },
+  onShareAppMessage: function () {
 
-  onShareTimeline:function(){
-    let that = this
-    var title = "合肥吃货"
-    return {
-      title:"#快来七饭#" + title,
-    }
   }
 })

@@ -4,12 +4,18 @@
   </view>
   
   <view wx:if="{{imageIndex !=-1}}" bindtap="gotoFoodPage" data-index="{{ imageIndex}}">
-    <image class="myimage" src="https://oddfee.com/images/food/food{{ imageIndex}}.jpg"></image>
+    <image class="myimage" src="https://www.oddfee.com/images/food/food{{ imageIndex}}.jpg"></image>
   </view>
 
   <view class="words" bindtap="gotoHefeiPrivateStore">
-    <text >合肥私房菜</text>
-    <text class="right" bindtap="gotoHefeiPrivateStore">查看更多</text>
+    <text >合肥吃货</text>
+    <text class="right" bindtap="gotoHefeiPrivateStore">逛一逛</text>
+  </view>
+  <view class="divLine"></view>
+
+  <view class="words" bindtap="gotoMyPrivateStore">
+    <text >吃过留影</text>
+    <text class="right" bindtap="gotoMyPrivateStore">发一发</text>
   </view>
   <view class="divLine"></view>
 

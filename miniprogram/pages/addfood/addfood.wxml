@@ -1,0 +1,23 @@
+
+<view>
+
+  <view class="section">
+    <form bindsubmit="bindFormSubmit">
+      <view>
+        <image class ="myfoodImage" src="{{ photos[0] }}" mode="aspectFit"></image>
+      </view>
+
+      <view class="uplabel" bindtap="chooseImg">
+        <text >上传照片</text>
+      </view>
+      
+      <button class="button-sp-area" type="primary" plain="true" form-type="submit" > 发射留影 </button>
+    </form>
+  </view>
+
+  <view>
+    <text>{{ text }}</text>
+  </view>
+
+  <image class ="myfoodImageFromService" src="https://www.oddfee.com/{{ picfromService }}" mode="aspectFit"></image>
+</view>

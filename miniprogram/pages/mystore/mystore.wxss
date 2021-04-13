@@ -1,0 +1,7 @@
+@import "../privatestore/privatestore.wxss";
+
+.fayifa{
+  position: absolute;
+  background-position-x: right;
+  background-position-y: bottom;
+}

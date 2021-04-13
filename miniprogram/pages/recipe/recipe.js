@@ -240,7 +240,7 @@ Page({
     let that = this
     var category = that.data.category
     return {
-      title:"#妈妈的菜单#" +category 
+      title:"#快来七饭#" +category 
     }
   }
 })

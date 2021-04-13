@@ -1,0 +1,19 @@
+/* pages/addfood/addfood.wxss */
+
+.myfoodImage {
+  width: 30vw;
+  height: 30vw;
+  background-color: gold;
+}
+
+.uplabel {
+  width: 30vw;
+  height: 30vw;
+  background-color: gainsboro;
+  text-align: center;
+}
+
+.myfoodImageFromService{
+  width: 100vw;
+  height: 100vw;
+}

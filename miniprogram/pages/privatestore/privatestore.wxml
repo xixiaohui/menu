@@ -7,7 +7,7 @@
 
     <view>
         <view bindtap="review" data-id="{{ item._id}}">
-          <image class="myimage" src="https://oddfee.com/images/privatestore/store{{item.index}}.jpg"></image>
+          <image class="myimage" src="https://oddfee.com/{{item.url}}"></image>
         </view>
       
         <view class="othercontent">
