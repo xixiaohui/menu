@@ -7,6 +7,12 @@
     <image class="myimage" src="https://oddfee.com/images/food/food{{ imageIndex}}.jpg"></image>
   </view>
 
+  <view class="words" bindtap="gotoHefeiPrivateStore">
+    <text >合肥私房菜</text>
+    <text class="right" bindtap="gotoHefeiPrivateStore">查看更多</text>
+  </view>
+  <view class="divLine"></view>
+
   <view>
     <block wx:for="{{ keys }}" wx:key="item" wx:for-index="idx">
     

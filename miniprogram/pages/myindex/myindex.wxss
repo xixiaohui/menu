@@ -24,3 +24,8 @@
   height: 100vw;
 }
 
+.right{
+  font-size: small;
+  margin-left: 50vw;
+  color: #556B2F;
+}

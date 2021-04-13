@@ -1,0 +1,54 @@
+<view>
+  <block wx:for="{{ stores }}" wx:key="id" wx:for-index="idx">
+
+    <view class= "ads" wx:if="{{ idx == 2}}">
+      <ad unit-id="adunit-7b2f84e5e5aed479"></ad>
+    </view>
+
+    <view>
+        <view bindtap="review" data-id="{{ item._id}}">
+          <image class="myimage" src="https://oddfee.com/images/privatestore/store{{item.index}}.jpg"></image>
+        </view>
+      
+        <view class="othercontent">
+          <view class="food_title">
+            <text> {{item.title}}</text>
+            
+          </view>
+
+          <block wx:for="{{ item.des }}" wx:key="id">
+            <view class="food_des">
+              <text user-select>{{ item }}\n</text>
+            </view>
+            
+          </block>
+
+          <block wx:for="{{ item.tips }}" wx:key="id">
+            <view class="food_time_address">
+              <text user-select>{{ item }}</text>
+            </view>
+            
+          </block>
+
+          <view class="food_time_address">
+            <text user-select> {{item.phone}}</text>
+            
+          </view>
+          <view class="food_time_address">
+            <text user-select> {{item.address}}</text>
+            
+          </view>
+
+          <block wx:for="{{ item.tags }}" wx:key="id">
+            <view class="food_time_address"> 
+              <text user-select>{{ item }}</text>
+            </view>
+            
+          </block>
+
+        </view>
+      </view>
+    
+  </block>
+  
+</view>

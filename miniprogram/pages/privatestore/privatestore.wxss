@@ -1,0 +1,13 @@
+
+@import "../../style/style.wxss";
+
+@import "../food/food.wxss";
+
+.food_tip{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.food_time_address{
+  font-size: small;
+}

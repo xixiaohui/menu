@@ -1,6 +1,4 @@
-
-
-const keyDatabaseName='keys'
+const keyDatabaseName = 'keys'
 const allrecipes = {}
 
 Page({
@@ -9,16 +7,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    words:["常见菜式", "主食小吃", "甜品", "适宜人群", "食疗食补", 
-    "场景", "饮食方式", "中式菜系", "外国美食", "烘焙", "传统美食",
-    "节日食俗", "按制作难度", "按所需时间", "按菜品口味", "按主要工艺"],
-    keys:[],
+    words: ["常见菜式", "主食小吃", "甜品", "适宜人群", "食疗食补",
+      "场景", "饮食方式", "中式菜系", "外国美食", "烘焙", "传统美食",
+      "节日食俗", "按制作难度", "按所需时间", "按菜品口味", "按主要工艺"
+    ],
+    keys: [],
 
     imageIndex: -1,
   },
 
   //处理搜索结果
-  selectResult: function (result){
+  selectResult: function (result) {
     console.log("---------selectResult---------" + JSON.stringify(result))
 
     //跳转到新的页面
@@ -28,7 +27,7 @@ Page({
     })
   },
 
-  filterAllKeysByWords:function(all){
+  filterAllKeysByWords: function (all) {
     let that = this
 
     let words = that.data.words
@@ -36,37 +35,37 @@ Page({
     for (let index = 0; index < words.length; index++) {
       const element = words[index];
 
-      var ab = "keys["+index+"]"
+      var ab = "keys[" + index + "]"
       var data = allkeys.filter(item => item.recipe == element)
-      
+
       that.setData({
-        [ab]:data
+        [ab]: data
       })
     }
   },
 
-  getAllKeys:function(){
+  getAllKeys: function () {
     let that = this
     wx.showLoading({
       title: '加载中，请稍后',
     })
     wx.cloud.callFunction({
-     name:"getAllRecipes",
-     success:res=>{
+      name: "getAllRecipes",
+      success: res => {
         wx.hideLoading()
         // console.log(res.result.data)
         var allkeys = res.result.data
         that.filterAllKeysByWords(allkeys)
-     }
+      }
     })
   },
 
 
-  gotoRecipe:function(event){
+  gotoRecipe: function (event) {
     let that = this
     console.log(event)
     let text = event.currentTarget.dataset.text
-    
+
     console.log(text)
     wx.navigateTo({
       url: '/pages/recipe/recipe?text=' + text,
@@ -75,7 +74,7 @@ Page({
 
 
   //跳转到每日推荐页面
-  gotoFoodPage:function(event) {
+  gotoFoodPage: function (event) {
     let that = this
     // console.log(event)
     let index = event.currentTarget.dataset.index
@@ -86,26 +85,35 @@ Page({
   },
 
   //获取每日推荐的菜谱图片索引
-  setImageIndex:function(){
+  setImageIndex: function () {
     let that = this
 
     wx.showLoading({
       title: '加载中，请稍后',
     })
     wx.cloud.callFunction({
-     name:"getFood",
-     data:{
-      databasename:'food',
-     }
-    }).then(res=>{
+      name: "getFood",
+      data: {
+        databasename: 'food',
+      }
+    }).then(res => {
       wx.hideLoading()
       console.log(res.result)
       that.setData({
-        imageIndex:res.result.data[0].index
-      }) 
-    
-  })
-},
+        imageIndex: res.result.data[0].index
+      })
+
+    })
+  },
+
+  //跳转到合肥私房菜页面
+  gotoHefeiPrivateStore: function () {
+    let that = this
+   
+    wx.navigateTo({
+      url: '/pages/privatestore/privatestore',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -166,12 +174,12 @@ Page({
 
   },
 
-  onShareTimeline:function(){
-    
-    
+  onShareTimeline: function () {
+
+
     return {
-      title:"#妈妈的菜单#" + "逛吃逛吃" 
+      title: "#妈妈的菜单#" + "逛吃逛吃"
     }
-  
+
   }
 })
