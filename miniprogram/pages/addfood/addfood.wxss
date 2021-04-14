@@ -1,9 +1,16 @@
 /* pages/addfood/addfood.wxss */
 
+.insertImage{
+  display: flex;
+  flex-direction:row;
+ 
+  width: 60vw;
+}
+
 .myfoodImage {
   width: 30vw;
   height: 30vw;
-  background-color: gold;
+  /* background-color:gold; */
 }
 
 .uplabel {
@@ -11,9 +18,54 @@
   height: 30vw;
   background-color: gainsboro;
   text-align: center;
+  color: white;
+  
+}
+.uploadText{
+  position: relative;
+  right: 0px;
+  bottom: -50px;
+  font-weight: bold;
 }
 
 .myfoodImageFromService{
   width: 100vw;
   height: 100vw;
+}
+
+.fayifa{
+  position: fixed;
+  z-index:99;
+  right:50px; 
+  bottom:50px;
+  border-radius: 50%;
+  background-color: #556B2F;
+  width: 80px;
+  height: 80px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.fashe{
+  position: relative;
+  color: white;
+  right: 52px;
+  bottom: -20px;
+}
+
+.upload{
+  margin: 1rem;
+}
+
+.fabu{
+  margin: 1rem;
+}
+
+.cancel{
+  margin: 0.5rem;
+}
+
+.des{
+  height: 80px;
 }

@@ -5,17 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    stores: []
+    stores: [],
+
+    tips: "空"
   },
 
-  gotoAddfood: function(e){
+  gotoAddfood: function (e) {
     let that = this
-   
+
     wx.navigateTo({
       url: '/pages/addfood/addfood',
     })
   },
-  
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -25,10 +27,11 @@ Page({
 
     that.loadStoreData()
 
+
   },
 
   //加载store里数据
-  loadStoreData:function () {
+  loadStoreData: function () {
     let that = this
     wx.showLoading({
       title: '加载中，请稍后',
@@ -37,13 +40,33 @@ Page({
       name: "getStore",
       data: {
         databasename: 'store',
+        mystore: 1
       }
     }).then(res => {
       wx.hideLoading()
-      console.log(res.result)
+      // console.log(res.result)
       that.setData({
         stores: res.result.data
       })
+      if (that.data.stores.length != 0) {
+        that.setData({
+          tips: '非空'
+        })
+      }
+    })
+  },
+
+  //添加评论
+  review: function (event) {
+    console.log("review")
+
+    let that = this
+    // console.log(event)
+    let id = event.currentTarget.dataset.id
+
+    // console.log(text)
+    wx.navigateTo({
+      url: '/pages/review/review?id=' + id,
     })
   },
 
@@ -93,6 +116,22 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    let that = this
+    // console.log("onShareAppMessage")
+    var sharepath = '/pages/mystore/mystore'
+    var title = "我的留影"
+    return {
+      title: title,
+      path: sharepath
+    }
+  },
 
+  onShareTimeline: function () {
+    let that = this
+    var title = "我的留影"
+    return {
+      title: "#快来七饭#" + title,
+    }
   }
+
 })

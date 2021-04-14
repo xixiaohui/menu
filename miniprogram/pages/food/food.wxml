@@ -1,4 +1,4 @@
-<view>
+<view class="food">
   <block wx:for="{{ foods }}" wx:key="id" wx:for-index="idx">
 
     <view class= "ads" wx:if="{{ idx == 2}}">

@@ -1,7 +1,42 @@
 @import "../privatestore/privatestore.wxss";
 
+.mystore{
+  background-color: white;
+}
+
 .fayifa{
-  position: absolute;
-  background-position-x: right;
-  background-position-y: bottom;
+  position: fixed;
+  z-index:99;
+  right:50px; 
+  bottom:50px;
+  border-radius: 50%;
+  background-color: #556B2F;
+  width: 80px;
+  height: 80px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.tuisong{
+  right:0px;
+  bottom:-11px;
+  position: relative;
+  font-size: xx-large;
+}
+
+.onetip{
+
+  background-color: white;
+  margin-bottom: 1px;
+  border-radius: 0.3em;
+}
+
+.othercontent{
+  padding-top: 1em;
+}
+
+.tips{
+  text-align: center;
+  margin: 50vw;
 }

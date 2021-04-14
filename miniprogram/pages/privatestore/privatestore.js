@@ -93,8 +93,9 @@ Page({
    */
   onShareAppMessage: function (res) {
     let that = this
-    console.log("onShareAppMessage")
+    // console.log("onShareAppMessage")
     var sharepath = '/pages/privatestore/privatestore'
+    var title = "饮食男女"
     return{
       title:title,
       path:sharepath
@@ -103,7 +104,7 @@ Page({
 
   onShareTimeline:function(){
     let that = this
-    var title = "合肥吃货"
+    var title = "饮食男女"
     return {
       title:"#快来七饭#" + title,
     }

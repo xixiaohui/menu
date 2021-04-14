@@ -1,8 +1,11 @@
-<view>
-  <view class="fayifa">
-    <button type="primary" bindtap="gotoAddfood">发一发</button>
+<view class="mystore">
+  <view class="fayifa" bindtap="gotoAddfood">
+    <text class="tuisong" > + </text>
   </view>
   
+  <view class="tips" wx:if="{{ tips == '空' }}">
+    <text>{{tips}}</text>
+  </view>
 
   <block wx:for="{{ stores }}" wx:key="id" wx:for-index="idx">
 
@@ -10,7 +13,7 @@
       <ad unit-id="adunit-7b2f84e5e5aed479"></ad>
     </view>
 
-    <view>
+    <view class="onetip">
       <view bindtap="review" data-id="{{ item._id}}">
         <image class="myimage" src="https://oddfee.com/{{item.url}}"></image>
       </view>

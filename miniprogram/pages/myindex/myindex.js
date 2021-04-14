@@ -14,6 +14,8 @@ Page({
     keys: [],
 
     imageIndex: -1,
+
+    exit:"false"
   },
 
   //处理搜索结果
@@ -109,28 +111,39 @@ Page({
   //跳转到合肥私房菜页面
   gotoHefeiPrivateStore: function () {
     let that = this
-   
-    wx.navigateTo({
-      url: '/pages/privatestore/privatestore',
-    })
+    if(that.data.exit == "false"){
+      that.setData({
+        exit:"true"
+      })
+      wx.navigateTo({
+        url: '/pages/privatestore/privatestore',
+      })
+    }
+    
   },
 
   //跳转到我的私房菜
   gotoMyPrivateStore: function() {
     let that = this
-   
-    wx.navigateTo({
-      url: '/pages/mystore/mystore',
-    })
+    if(that.data.exit == "false"){
+      that.setData({
+        exit:"true"
+      })
+      wx.navigateTo({
+        url: '/pages/mystore/mystore',
+      })
+    }
+    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this
+ 
+    that.getAllKeys()
 
-    this.getAllKeys()
-
-    this.setImageIndex()
+    that.setImageIndex()
   },
 
   /**
@@ -139,6 +152,7 @@ Page({
   onReady: function () {
 
   },
+
 
   /**
    * 生命周期函数--监听页面显示
@@ -151,7 +165,10 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    let that = this
+    that.setData({
+      exit:"false"
+    })
   },
 
   /**

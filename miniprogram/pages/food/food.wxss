@@ -1,3 +1,7 @@
+.food{
+  background-color: white;
+}
+
 .myimage{
   border-radius: 0.3em;
   width: 100vw;

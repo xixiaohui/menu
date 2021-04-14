@@ -10,8 +10,11 @@ Page({
   data: {
     photos: "",
 
-
-    picfromService: ""
+    title:"",
+    phone:"",
+    address:"",
+    des:[],
+    tips:[]
   },
 
   /**
@@ -35,9 +38,10 @@ Page({
   },
 
   /**
-   * 上传照片
+   * 上传照片 
+   * 和其他信息
    */
-  uploadImg: function () {
+  uploadImgAndOtherInput: function () {
     var that = this
     wx.uploadFile({
       url: UPLOADFILE_URL, //仅为示例，非真实的接口地址
@@ -58,11 +62,9 @@ Page({
         console.log(data.path)
         //上传云数据库记录
 
-        that.submitToCloudDatabase(data.path)
+        that.submitToCloudDatabase(data.path,that.data.title,
+          that.data.phone,that.data.address,that.data.des,that.data.tips)
 
-        that.setData({
-          picfromService: data.path
-        })
       },
       fail: function (res) {
 
@@ -80,34 +82,51 @@ Page({
     return [year, month, day].join('-')
   },
 
-  //吃货提交留影
-  submitToCloudDatabase: function (path) {
+  //吃货提交发布留影
+  submitToCloudDatabase: function (path,title,phone,address,des,tips) {
     let that = this
-
-
     const db = wx.cloud.database()
     db.collection('store').add({
       // data 字段表示需新增的 JSON 数据
       data: {
-        title: "天下第一楼",
-        phone: "166 8892 8888",
+        title: title,
+        phone: phone,
         time: that.formatTime(new Date()),
         url: path,
-        address: "北京",
-        des: [],
-        tips: [],
+        address: address,
+        des: des,
+        tips: tips,
         tags: []
       },
       success: function (res) {
         console.log(res)
       }
     })
-
   },
 
   bindFormSubmit: function (e) {
+    console.log("bindFormSubmit")
+
     let that = this
-    that.uploadImg();
+    if(e.detail.value.title == null){
+      return;
+    }
+    let des = []
+    des.push(e.detail.value.des)
+
+    let tips = []
+    tips.push(e.detail.value.tips)
+
+    that.setData({
+      title:e.detail.value.title,
+      phone:e.detail.value.phone,
+      address:e.detail.value.address,
+      des: des,
+      tips: tips
+    })
+    
+
+    that.uploadImgAndOtherInput()
   },
 
   /**

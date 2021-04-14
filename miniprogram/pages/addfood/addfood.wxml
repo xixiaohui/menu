@@ -1,23 +1,67 @@
 
-<view>
+<view class="upload">
 
   <view class="section">
     <form bindsubmit="bindFormSubmit">
-      <view>
+      
+      <view class="insertImage">
+        <view class="uplabel" bindtap="chooseImg">
+          <text class="uploadText">+上传照片</text>
+        </view>
+        
         <image class ="myfoodImage" src="{{ photos[0] }}" mode="aspectFit"></image>
+        
       </view>
 
-      <view class="uplabel" bindtap="chooseImg">
-        <text >上传照片</text>
+      <view class="page-section">
+        
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input class="weui-input"  name="title" type ="text" placeholder="标题"/>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <textarea class="weui-input" name="tips" type ="text" placeholder="联系人"/>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input class="weui-input" name="phone" type ="number" placeholder="电话"/>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input class="weui-input" name="address" type ="text" placeholder="地址"/>
+          </view>
+        </view>
       </view>
       
-      <button class="button-sp-area" type="primary" plain="true" form-type="submit" > 发射留影 </button>
+      <view class="page-section">
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <textarea class="des weui-input" name="des" type ="text" placeholder="更多描述"/>
+          </view>
+        </view>
+      </view>
+
+      <view class="fabu">
+        <button type="primary" formType="submit"> 发布 </button>
+        <button class="cancel" type="default" formType="reset"> 取消 </button>
+      </view>
+      
     </form>
   </view>
 
-  <view>
-    <text>{{ text }}</text>
-  </view>
 
-  <image class ="myfoodImageFromService" src="https://www.oddfee.com/{{ picfromService }}" mode="aspectFit"></image>
+
 </view>

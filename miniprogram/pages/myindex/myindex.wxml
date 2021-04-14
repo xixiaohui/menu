@@ -8,13 +8,13 @@
   </view>
 
   <view class="words" bindtap="gotoHefeiPrivateStore">
-    <text >合肥吃货</text>
+    <text >饮食男女</text>
     <text class="right" bindtap="gotoHefeiPrivateStore">逛一逛</text>
   </view>
   <view class="divLine"></view>
 
   <view class="words" bindtap="gotoMyPrivateStore">
-    <text >吃过留影</text>
+    <text >我的留影</text>
     <text class="right" bindtap="gotoMyPrivateStore">发一发</text>
   </view>
   <view class="divLine"></view>
