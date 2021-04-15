@@ -13,7 +13,9 @@
       <ad unit-id="adunit-7b2f84e5e5aed479"></ad>
     </view>
 
-    <view class="onetip">
+
+    <mp-slideview class="onetip" buttons="{{slideButtons}}"  bindbuttontap="slideButtonTap" 
+    data-id="{{ item._id}}">
       <view bindtap="review" data-id="{{ item._id}}">
         <image class="myimage" src="https://oddfee.com/{{item.url}}"></image>
       </view>
@@ -55,7 +57,7 @@
         </block>
 
       </view>
-    </view>
+    </mp-slideview>
 
   </block>
 </view>

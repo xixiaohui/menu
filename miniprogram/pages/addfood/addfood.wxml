@@ -6,7 +6,11 @@
       
       <view class="insertImage">
         <view class="uplabel" bindtap="chooseImg">
-          <text class="uploadText">+上传照片</text>
+          <text class="uploadText">+上传1:1方形图片</text>
+          <view>
+            <text class="uploadText">必填</text>
+          </view>
+          
         </view>
         
         <image class ="myfoodImage" src="{{ photos[0] }}" mode="aspectFit"></image>
@@ -17,7 +21,7 @@
         
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
-            <input class="weui-input"  name="title" type ="text" placeholder="标题"/>
+            <input class="weui-input"  name="title" type ="text" placeholder="标题(必填)"/>
           </view>
         </view>
       </view>

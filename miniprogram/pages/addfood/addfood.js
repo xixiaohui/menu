@@ -61,7 +61,9 @@ Page({
 
         console.log(data.path)
         //上传云数据库记录
-
+        wx.showLoading({
+          title: '发布中，请稍后...',
+        })
         that.submitToCloudDatabase(data.path,that.data.title,
           that.data.phone,that.data.address,that.data.des,that.data.tips)
 
@@ -69,6 +71,9 @@ Page({
       fail: function (res) {
 
         console.log(res)
+        wx.showToast({
+          title: '哪里有问题',
+        })
       }
     })
   },
@@ -85,6 +90,8 @@ Page({
   //吃货提交发布留影
   submitToCloudDatabase: function (path,title,phone,address,des,tips) {
     let that = this
+
+   
     const db = wx.cloud.database()
     db.collection('store').add({
       // data 字段表示需新增的 JSON 数据
@@ -100,6 +107,20 @@ Page({
       },
       success: function (res) {
         console.log(res)
+        wx.hideLoading({
+          success: (res) => {},
+        })
+        wx.showToast({
+          title: '发布成功',
+        })
+      },
+      fail:function(res){
+        wx.hideLoading({
+          success: (res) => {},
+        })
+        wx.showToast({
+          title: '发布失败',
+        })
       }
     })
   },

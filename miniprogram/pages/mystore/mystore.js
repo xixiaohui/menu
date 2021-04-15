@@ -7,7 +7,14 @@ Page({
   data: {
     stores: [],
 
-    tips: "空"
+    tips: "空",
+
+    slideButtons: [{
+      type: 'warn',
+      text: '删除',
+      extClass: 'delete',
+      data: []
+    }]
   },
 
   gotoAddfood: function (e) {
@@ -70,6 +77,53 @@ Page({
     })
   },
 
+  //删除本地记录
+  deleteMyFoodFromStore: function (id) {
+    let that = this
+
+    let stores = that.data.stores;
+    let index = 0
+    for (var i = 0; i < stores.length; i++) {
+      if (stores[i]._id == id) {
+        index = i
+        break
+      }
+    }
+    stores.splice(index,1)
+    // console.log(stores)
+
+    that.setData({
+      stores: stores
+    })
+  },
+
+  //删除云端记录
+  deleteMyFood: function (id) {
+    let that = this
+
+    // that.deleteMyFoodFromStore(id)
+
+    const db = wx.cloud.database()
+    db.collection('store').doc(id).remove({
+      success: function (res) {
+        // console.log(res.data)
+        wx.showToast({
+          title: '删除成功',
+        })
+        that.deleteMyFoodFromStore(id)
+      }
+    })
+  },
+
+  //响应左划
+  slideButtonTap: function (e) {
+    let that = this
+    console.log('slide button tap', e)
+    console.log('slide button tap', e.currentTarget.dataset.id)
+    let id = e.currentTarget.dataset.id
+
+    that.deleteMyFood(id)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
