@@ -1,6 +1,8 @@
 const keyDatabaseName = 'keys'
 const allrecipes = {}
 
+
+const XIXIAOHUI = 'oOpb_4z23zUSQEyNL7ijz-3i927w'
 Page({
 
   /**
@@ -15,7 +17,10 @@ Page({
 
     imageIndex: -1,
 
-    exit:"false"
+    exit:"false",
+
+    openid:'oOpb_4z23zUSQEyNL7ijz-3i927w',
+    isXixiaohui:false
   },
 
   //处理搜索结果
@@ -135,6 +140,58 @@ Page({
     }
     
   },
+
+  /**
+   * 
+   * 登录
+   */
+  myLogin:function(){
+    console.log('myLogin')
+    let that = this
+    wx.login({
+      success(res){
+        if(res.code){
+          console.log(res.code)
+          var url = 'https://www.oddfee.com/menu/login'
+
+          wx.request({
+            url: url,
+            data:{
+              code:res.code
+            },
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success (res) {
+              let whosopenid = res.data.openid
+              console.log(res.data.openid)
+              console.log(res.data.session_key)
+
+              that.setData({
+                openid:res.data.openid
+              })
+
+              if(whosopenid == XIXIAOHUI){
+                that.setData({
+                  isXixiaohui:true
+                })
+              }else{
+                that.setData({
+                  isXixiaohui:false
+                })
+              }
+            },
+            fail(res){
+              console.log('fail')
+              console.log(res)
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -144,6 +201,8 @@ Page({
     that.getAllKeys()
 
     that.setImageIndex()
+
+    that.myLogin()
   },
 
   /**
