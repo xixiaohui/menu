@@ -202,7 +202,7 @@ Page({
 
     that.setImageIndex()
 
-    that.myLogin()
+    // that.myLogin()
   },
 
   /**
